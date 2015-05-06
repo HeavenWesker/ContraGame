@@ -18,7 +18,15 @@ public:
     CREATE_FUNC(Hero);
     bool init();
     void idle();
-    bool direction;
+    bool directionRight;
+    bool movingRight;
+    bool movingLeft;
+    void ListenKeyboardEvent();
+    void onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event);
+    void onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event);
+    void moveRight(float dt);
+    void moveLeft(float dt);
+    void update(float dt);
 };
 
 
