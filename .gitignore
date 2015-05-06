@@ -1,0 +1,11 @@
+#cocos2d-x
+libs/
+bin/
+obj/
+assets/
+gen/
+out/
+.classpath
+.project
+.cproject
+
