@@ -8,6 +8,8 @@
 
 #ifndef ContraGame_GameScene_h
 #define ContraGame_GameScene_h
+
+#include "Hero.h"
 using namespace cocos2d;
 class GameScene : public Layer
 {
@@ -20,6 +22,8 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
+    void update(float dt); //delta time
+    Hero* hero;
 };
 
 

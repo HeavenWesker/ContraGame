@@ -22,7 +22,7 @@ Scene* GameScene::createScene()
 
     // add layer as a child to scene
     scene->addChild(layer);
-
+    
     // return the scene
     return scene;
 }
@@ -43,6 +43,15 @@ bool GameScene::init()
     auto bg = Sprite::create("bg.jpg");
     bg->setAnchorPoint(Vec2(0,0));
     this->addChild(bg);
+    //add hero
+    hero = Hero::create();
+    hero->setPosition(120, 200);
+    this->addChild(hero);
+
+//    this->schedule(schedule_selector(GameScene::update), 0.01);
+    scheduleUpdate();
 
     return true;
+}
+void GameScene::update(float dt){
 }
