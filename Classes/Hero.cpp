@@ -18,9 +18,11 @@ bool Hero::init(){
     return true;
 }
 void Hero::idle(){
+    this->removeAllChildren();
     auto sprite = Sprite::create("hero/idle.png");
     sprite->setAnchorPoint(Vec2(0.5, 0));
     this->addChild(sprite);
+    sp = sprite;
     this->setScaleX(directionRight? -1: 1);
 }
 void Hero::ListenKeyboardEvent(){
@@ -33,14 +35,13 @@ void Hero::ListenKeyboardEvent(){
 void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
     switch (int(code)) {
         case 27://right key
-//            moveRight(0.1);
             movingRight = true;
+            moveAnimation();
             break;
         case 26://left key
-//            moveLeft(0.1);
             movingLeft = true;
+            moveAnimation();
             break;
-            
         default:
             break;
     }
@@ -48,14 +49,15 @@ void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
 void Hero::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
     switch (int(code)) {
         case 27://right key
-//            moveRight(0.1);
             movingRight = false;
+            sp->stopAction(movingAction);
+            idle();
             break;
         case 26://left key
-//            moveLeft(0.1);
             movingLeft = false;
+            sp->stopAction(movingAction);
+            idle();
             break;
-            
         default:
             break;
     }
@@ -63,20 +65,33 @@ void Hero::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
 
 void Hero::moveLeft(float dt){
     float d = 100 * dt;
+    this->setScaleX(directionRight? -1: 1);
+    directionRight = false;
     setPositionX(getPositionX()-d);
 }
 void Hero::moveRight(float dt){
     float d = 100 * dt;
-    directionRight = false;
+    this->setScaleX(directionRight? -1: 1);
+    directionRight = true;
     setPositionX(getPositionX()+d);
 }
 void Hero::update(float dt){
-    CCLOG("Hero::update %f", dt);
     if (movingRight) {
         moveRight(dt);
     }
     if (movingLeft) {
         moveLeft(dt);
     }
-    
+}
+void Hero::moveAnimation(){
+    Vector<SpriteFrame*> allFrames;
+    for (int i = 0; i < 3; i++) {
+        char txt[100] = {};
+        sprintf(txt, "hero/run_left000%d.png", i+1);
+        SpriteFrame * spriteFrame = SpriteFrame::create(txt, Rect(0,0,55,55));
+        allFrames.pushBack(spriteFrame);
+    }
+    CCLOG("%zd",allFrames.size());
+    Animation* animation = Animation::createWithSpriteFrames(allFrames, 0.2);
+    movingAction = sp->runAction(RepeatForever::create(Animate::create(animation)));
 }

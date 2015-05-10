@@ -27,6 +27,9 @@ public:
     void moveRight(float dt);
     void moveLeft(float dt);
     void update(float dt);
+    void moveAnimation();
+    Sprite *sp;
+    Action *movingAction;
 };
 
 

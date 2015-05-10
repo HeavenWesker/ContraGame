@@ -54,6 +54,6 @@ bool GameScene::init()
     return true;
 }
 void GameScene::update(float dt){
-    CCLOG("GameScene::update %f", dt);
+//    CCLOG("GameScene::update %f", dt);
     hero->update(dt);
 }
