@@ -68,6 +68,10 @@
 		571904571AFA33B6000F4BC8 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904541AFA33B6000F4BC8 /* GameScene.cpp */; };
 		5719045A1AFA44C9000F4BC8 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904581AFA44C9000F4BC8 /* Hero.cpp */; };
 		5719045B1AFA44C9000F4BC8 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904581AFA44C9000F4BC8 /* Hero.cpp */; };
+		57C0EF471AFFBE4F00B6D475 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */; };
+		57C0EF481AFFC30500B6D475 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */; };
+		57DAE9F41B006B0A002F9916 /* Bombman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57DAE9F21B006B0A002F9916 /* Bombman.cpp */; };
+		57DAE9F51B006B0A002F9916 /* Bombman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57DAE9F21B006B0A002F9916 /* Bombman.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -166,6 +170,10 @@
 		571904551AFA33B6000F4BC8 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		571904581AFA44C9000F4BC8 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
 		571904591AFA44C9000F4BC8 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		57C0EF461AFFBE4F00B6D475 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		57DAE9F21B006B0A002F9916 /* Bombman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bombman.cpp; sourceTree = "<group>"; };
+		57DAE9F31B006B0A002F9916 /* Bombman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bombman.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -311,6 +319,10 @@
 				5719043C1AFA2636000F4BC8 /* MainScene.cpp */,
 				571904581AFA44C9000F4BC8 /* Hero.cpp */,
 				571904591AFA44C9000F4BC8 /* Hero.h */,
+				57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */,
+				57C0EF461AFFBE4F00B6D475 /* Bullet.h */,
+				57DAE9F21B006B0A002F9916 /* Bombman.cpp */,
+				57DAE9F31B006B0A002F9916 /* Bombman.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -518,9 +530,11 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				57C0EF471AFFBE4F00B6D475 /* Bullet.cpp in Sources */,
 				5719045A1AFA44C9000F4BC8 /* Hero.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				571904561AFA33B6000F4BC8 /* GameScene.cpp in Sources */,
+				57DAE9F41B006B0A002F9916 /* Bombman.cpp in Sources */,
 				5719043D1AFA2636000F4BC8 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +544,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				57DAE9F51B006B0A002F9916 /* Bombman.cpp in Sources */,
+				57C0EF481AFFC30500B6D475 /* Bullet.cpp in Sources */,
 				5719043E1AFA2636000F4BC8 /* MainScene.cpp in Sources */,
 				571904571AFA33B6000F4BC8 /* GameScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,

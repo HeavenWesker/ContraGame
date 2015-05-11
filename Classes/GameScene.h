@@ -10,6 +10,7 @@
 #define ContraGame_GameScene_h
 
 #include "Hero.h"
+#include "Bullet.h"
 using namespace cocos2d;
 class GameScene : public Layer
 {
@@ -24,6 +25,15 @@ public:
     CREATE_FUNC(GameScene);
     void update(float dt); //delta time
     Hero* hero;
+    void fire();
+    void moveBullets(float dt);
+    Vector<Bullet*> bullets;
+    bool isFiring;
+    void ListenKeyboardEvent();
+    void onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event);
+    void onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event);
+    int count;
+    bool outScreen(Node* node);
 };
 
 

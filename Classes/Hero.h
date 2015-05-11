@@ -30,6 +30,13 @@ public:
     void moveAnimation();
     Sprite *sp;
     Action *movingAction;
+    bool isDown;
+    void down();
+    void jump();
+    bool isJumping;
+    float speedY;
+    float gravaty;
+    float originY;
 };
 
 
