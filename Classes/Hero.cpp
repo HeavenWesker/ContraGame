@@ -11,6 +11,7 @@
 bool Hero::init(){
     Sprite::init();
     directionRight = true;
+    speedX = 1000;
     isDown = false;
     movingRight = false;
     movingLeft = false;
@@ -25,6 +26,12 @@ void Hero::idle(){
     this->addChild(sprite);
     sp = sprite;
     this->setScaleX(directionRight? -1: 1);
+    if (movingLeft||movingRight) {
+        moveAnimation();
+    }
+    if (isDown) {
+        down();
+    }
 }
 void Hero::ListenKeyboardEvent(){
     this->_eventDispatcher->removeAllEventListeners();
@@ -35,25 +42,25 @@ void Hero::ListenKeyboardEvent(){
 }
 void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
     switch (int(code)) {
-        case 27://right key
+        case 127://right key
             movingRight = true;
             if (!isJumping) {
                 moveAnimation();
             }
             break;
-        case 26://left key
+        case 124://left key
             movingLeft = true;
             if (!isJumping) {
                 moveAnimation();
             }
             break;
-        case 29://down
+        case 142://down
             if (!isJumping) {
                 down();
                 isDown = true;
             }
             break;
-        case 28://jump
+        case 134://jump
             if (!isJumping) {
                 jump();
                 originY = this->getPositionY();
@@ -68,25 +75,27 @@ void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
 }
 void Hero::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
     switch (int(code)) {
-        case 27://right key
+        case 127://right key
             movingRight = false;
             sp->stopAction(movingAction);
             if (!isJumping) {
                 idle();
             }
             break;
-        case 26://left key
+        case 124://left key
             movingLeft = false;
             sp->stopAction(movingAction);
             if (!isJumping) {
                 idle();
             }
             break;
-        case 29://down
+        case 142://down
             isDown = false;
             if (!isJumping) {
                 idle();
             }
+            break;
+        case 132:
             break;
         default:
             break;
@@ -94,15 +103,21 @@ void Hero::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
 }
 
 void Hero::moveLeft(float dt){
-    float d = 100 * dt;
+    float d = speedX * dt;
     this->setScaleX(directionRight? -1: 1);
     directionRight = false;
+    if (isDown) {
+        return;
+    }
     setPositionX(getPositionX()-d);
 }
 void Hero::moveRight(float dt){
-    float d = 100 * dt;
+    float d = speedX * dt;
     this->setScaleX(directionRight? -1: 1);
     directionRight = true;
+    if (isDown) {
+        return;
+    }
     setPositionX(getPositionX()+d);
 }
 void Hero::update(float dt){

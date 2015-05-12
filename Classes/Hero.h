@@ -37,6 +37,7 @@ public:
     float speedY;
     float gravaty;
     float originY;
+    float speedX;
 };
 
 

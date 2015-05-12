@@ -11,6 +11,7 @@
 
 #include "Hero.h"
 #include "Bullet.h"
+#include "Bombman.h"
 using namespace cocos2d;
 class GameScene : public Layer
 {
@@ -34,6 +35,12 @@ public:
     void onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event);
     int count;
     bool outScreen(Node* node);
+    Vector<Bombman*> bombmans;
+    void addBombman();
+    void moveBombmans(float dt);
+    int addBombmanCount;
+    void checkHited();
+    Sprite* map;
 };
 
 
