@@ -41,17 +41,20 @@ bool GameScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    map = Sprite::create("bg.jpg");
+//    map = Sprite::create("bg.jpg");
+    map = Sprite::create("bg_2.jpg");
     map->setAnchorPoint(Vec2(0,0));
     this->addChild(map);
+    //add platform
+//    addPlatform();
     //add hero
     hero = Hero::create();
     hero->setPosition(120, 200);
     map->addChild(hero);
     
-    auto bullet = Bullet::create();
-    bullet->setPosition(150, 200);
-    map->addChild(bullet);
+//    auto bullet = Bullet::create();
+//    bullet->setPosition(150, 200);
+//    map->addChild(bullet);
     addBombmanCount = 0;
     
 //    this->schedule(schedule_selector(GameScene::update), 0.01);
@@ -120,7 +123,7 @@ void GameScene::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
     }
 }
 void GameScene::fire(){
-    CCLOG("FIRE");
+//    CCLOG("FIRE");
     auto bullet = Bullet::create();
     bullet->radian = hero->directionRight?0:PI;
     bullet->setPositionY(hero->getPositionY()+(hero->isDown?13:36));
@@ -136,7 +139,7 @@ void GameScene::moveBullets(float dt){
         if (outScreen(bullet)) {
             bullet->removeFromParent();
             bullets.eraseObject(bullet);
-            CCLOG("bullet removed");
+//            CCLOG("bullet removed");
             i--;
         }
     }
@@ -166,7 +169,7 @@ void GameScene::moveBombmans(float dt){
         if (outScreen(bombman)) {
             bombman->removeFromParent();
             bombmans.eraseObject(bombman);
-            CCLOG("bombman removed");
+//            CCLOG("bombman removed");
             i--;
         }
     }
@@ -184,7 +187,7 @@ void GameScene::checkHited(){
                 bombman->removeFromParent();
                 bullets.eraseObject(bullet);
                 bullet->removeFromParent();
-                CCLOG("Hitted");
+//                CCLOG("Hitted");
                 i--;
                 j--;
                 break;
@@ -192,3 +195,9 @@ void GameScene::checkHited(){
         }
     }
 }
+//void GameScene::addPlatform(){
+//    auto platform = Platform::create();
+//    platforms.pushBack(platform);
+//    platform->setPosition(74,200);
+//    map->addChild(platform);
+//}

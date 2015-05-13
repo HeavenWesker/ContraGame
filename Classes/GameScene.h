@@ -41,6 +41,7 @@ public:
     int addBombmanCount;
     void checkHited();
     Sprite* map;
+    void addPlatform();
 };
 
 

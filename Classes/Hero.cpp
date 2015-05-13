@@ -7,6 +7,7 @@
 //
 
 #include "Hero.h"
+#include "MapData.h"
 
 bool Hero::init(){
     Sprite::init();
@@ -63,7 +64,9 @@ void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
         case 134://jump
             if (!isJumping) {
                 jump();
-                originY = this->getPositionY();
+//                originY = this->getPositionY();
+//                auto originYs = MapData::getHeight(getPositionX());
+//                originY = originYs[0];
                 speedY = 6;
                 gravaty = -0.2;
                 isJumping = true;
@@ -130,7 +133,17 @@ void Hero::update(float dt){
     if (isJumping) {
         setPositionY(getPositionY()+speedY);
         speedY+=gravaty;
-        if (getPositionY()<originY) {
+        auto originYs = MapData::getHeight(getPositionX());
+        for (int i = 0; i < 3; i++) {
+            CCLOG("CurrentY:%f",getPositionY());
+            CCLOG("originYs[%d]:%f",i,originYs[i]);
+            if (originYs[i] <= getPositionY()) {
+                originY = originYs[i];
+                break;
+            }
+        }
+//        CCLOG("originY:%f", originY);
+        if (getPositionY()-originY<10 && getPositionY()-originY>-10 && speedY<0) {
             setPositionY(originY);
             isJumping = false;
             sp->stopAction(movingAction);

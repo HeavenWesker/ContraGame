@@ -68,6 +68,12 @@
 		571904571AFA33B6000F4BC8 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904541AFA33B6000F4BC8 /* GameScene.cpp */; };
 		5719045A1AFA44C9000F4BC8 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904581AFA44C9000F4BC8 /* Hero.cpp */; };
 		5719045B1AFA44C9000F4BC8 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571904581AFA44C9000F4BC8 /* Hero.cpp */; };
+		574722B41B030928008825B3 /* bg_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 574722B31B030928008825B3 /* bg_2.jpg */; };
+		574722B51B030928008825B3 /* bg_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 574722B31B030928008825B3 /* bg_2.jpg */; };
+		57552EDF1B020B47008D7D51 /* MapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57552EDD1B020B47008D7D51 /* MapData.cpp */; };
+		57552EE01B020B47008D7D51 /* MapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57552EDD1B020B47008D7D51 /* MapData.cpp */; };
+		57552EE21B02D955008D7D51 /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 57552EE11B02D955008D7D51 /* platform.png */; };
+		57552EE31B02D955008D7D51 /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 57552EE11B02D955008D7D51 /* platform.png */; };
 		57C0EF471AFFBE4F00B6D475 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */; };
 		57C0EF481AFFC30500B6D475 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */; };
 		57DAE9F41B006B0A002F9916 /* Bombman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57DAE9F21B006B0A002F9916 /* Bombman.cpp */; };
@@ -170,6 +176,10 @@
 		571904551AFA33B6000F4BC8 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		571904581AFA44C9000F4BC8 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
 		571904591AFA44C9000F4BC8 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		574722B31B030928008825B3 /* bg_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg_2.jpg; path = ../Resources/bg_2.jpg; sourceTree = "<group>"; };
+		57552EDD1B020B47008D7D51 /* MapData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapData.cpp; sourceTree = "<group>"; };
+		57552EDE1B020B47008D7D51 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapData.h; sourceTree = "<group>"; };
+		57552EE11B02D955008D7D51 /* platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform.png; sourceTree = "<group>"; };
 		57C0EF451AFFBE4F00B6D475 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		57C0EF461AFFBE4F00B6D475 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		57DAE9F21B006B0A002F9916 /* Bombman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bombman.cpp; sourceTree = "<group>"; };
@@ -258,6 +268,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				574722B31B030928008825B3 /* bg_2.jpg */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -295,6 +306,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57552EE11B02D955008D7D51 /* platform.png */,
 				5719043F1AFA32A2000F4BC8 /* bg.jpg */,
 				571904401AFA32A2000F4BC8 /* bombman */,
 				571904411AFA32A2000F4BC8 /* bullet.png */,
@@ -323,6 +335,8 @@
 				57C0EF461AFFBE4F00B6D475 /* Bullet.h */,
 				57DAE9F21B006B0A002F9916 /* Bombman.cpp */,
 				57DAE9F31B006B0A002F9916 /* Bombman.h */,
+				57552EDD1B020B47008D7D51 /* MapData.cpp */,
+				57552EDE1B020B47008D7D51 /* MapData.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -484,10 +498,12 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5719044E1AFA32A2000F4BC8 /* MainBG.jpg in Resources */,
+				574722B41B030928008825B3 /* bg_2.jpg in Resources */,
 				571904521AFA32A2000F4BC8 /* playerSelector.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
+				57552EE21B02D955008D7D51 /* platform.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				571904461AFA32A2000F4BC8 /* bg.jpg in Resources */,
@@ -510,6 +526,8 @@
 			files = (
 				5719044D1AFA32A2000F4BC8 /* hero in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				57552EE31B02D955008D7D51 /* platform.png in Resources */,
+				574722B51B030928008825B3 /* bg_2.jpg in Resources */,
 				571904511AFA32A2000F4BC8 /* MainBG2.jpg in Resources */,
 				571904471AFA32A2000F4BC8 /* bg.jpg in Resources */,
 				5719044B1AFA32A2000F4BC8 /* bullet.png in Resources */,
@@ -533,6 +551,7 @@
 				57C0EF471AFFBE4F00B6D475 /* Bullet.cpp in Sources */,
 				5719045A1AFA44C9000F4BC8 /* Hero.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				57552EDF1B020B47008D7D51 /* MapData.cpp in Sources */,
 				571904561AFA33B6000F4BC8 /* GameScene.cpp in Sources */,
 				57DAE9F41B006B0A002F9916 /* Bombman.cpp in Sources */,
 				5719043D1AFA2636000F4BC8 /* MainScene.cpp in Sources */,
@@ -547,6 +566,7 @@
 				57DAE9F51B006B0A002F9916 /* Bombman.cpp in Sources */,
 				57C0EF481AFFC30500B6D475 /* Bullet.cpp in Sources */,
 				5719043E1AFA2636000F4BC8 /* MainScene.cpp in Sources */,
+				57552EE01B020B47008D7D51 /* MapData.cpp in Sources */,
 				571904571AFA33B6000F4BC8 /* GameScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				5719045B1AFA44C9000F4BC8 /* Hero.cpp in Sources */,
