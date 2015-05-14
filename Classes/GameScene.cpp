@@ -10,6 +10,7 @@
 #define PI 3.141592653
 
 #include "GameScene.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -45,6 +46,7 @@ bool GameScene::init()
     map = Sprite::create("bg_2.jpg");
     map->setAnchorPoint(Vec2(0,0));
     this->addChild(map);
+    addBrige();
     //add platform
 //    addPlatform();
     //add hero
@@ -176,15 +178,16 @@ void GameScene::moveBombmans(float dt){
 }
 void GameScene::checkHited(){
     for (int i = 0; i<bombmans.size(); i++) {
+        auto bombman = bombmans.at(i);
+        auto bombmanRect = Rect(bombman->getPositionX(), bombman->getPositionY(), 35, 48);
         for (int j = 0; j<bullets.size(); j++) {
-            auto bombman = bombmans.at(i);
-            auto bombmanRect = Rect(bombman->getPositionX(), bombman->getPositionY(), 35, 48);
             auto bullet = bullets.at(j);
-            auto bulletRect = Rect(bullet->getPositionX(), bullet->getPositionY(), 10, 10);
+            auto bulletRect = Rect(bullet->getPositionX(), bullet->getPositionY(), 1, 1);
 //            if (std::abs(bombman->getPositionX()-bullet->getPositionX())<20 &&bullet->getPositionY()-bombman->getPositionY()<50) {
             if (bombmanRect.intersectsRect(bulletRect)) {
                 bombmans.eraseObject(bombman);
                 bombman->removeFromParent();
+//                bombman->die();
                 bullets.eraseObject(bullet);
                 bullet->removeFromParent();
 //                CCLOG("Hitted");
@@ -193,11 +196,58 @@ void GameScene::checkHited(){
                 break;
             }
         }
+            auto heroRect = Rect(hero->getPositionX(), hero->getPositionY(),30, 40);
+            if(bombmanRect.intersectsRect(heroRect)){
+                CCLOG("DIE");
+                bombmans.eraseObject(bombman);
+                bombman->removeFromParent();
+                life--;
+                if (life==0) {
+                    gameOver();
+                }
+//                i--;
+            }
     }
 }
-//void GameScene::addPlatform(){
-//    auto platform = Platform::create();
-//    platforms.pushBack(platform);
-//    platform->setPosition(74,200);
-//    map->addChild(platform);
-//}
+void GameScene::addBrige(){
+//    brige_1_middle_1 = Sprite::create("building/briageMiddle.gif");
+//    brige_1_middle_2 = Sprite::create("building/briageMiddle.gif");
+//    brige_1_right = Sprite::create("building/briageRight.gif");
+    brige_1_left = BrigeLeft::create();
+    brige_1_left->setPosition(1773,200);
+    brige_1_1 = true;
+    map->addChild(brige_1_left);
+    brige_1_middle_1 = BrigeMiddle::create();
+    brige_1_middle_1->setPosition(1847,200);
+    brige_1_2 = true;
+    map->addChild(brige_1_middle_1);
+    brige_1_middle_2 = BrigeMiddle::create();
+    brige_1_middle_2->setPosition(1921,200);
+    brige_1_3 = true;
+    map->addChild(brige_1_middle_2);
+    brige_1_right = BrigeRight::create();
+    brige_1_right->setPosition(1995,200);
+    brige_1_4 = true;
+    map->addChild(brige_1_right);
+    //
+    brige_2_left = BrigeLeft::create();
+    brige_2_left->setPosition(2439,200);
+    brige_2_1 = true;
+    map->addChild(brige_2_left);
+    brige_2_middle_1 = BrigeMiddle::create();
+    brige_2_middle_1->setPosition(2513,200);
+    brige_2_2 = true;
+    map->addChild(brige_2_middle_1);
+    brige_2_middle_2 = BrigeMiddle::create();
+    brige_2_middle_2->setPosition(2587,200);
+    brige_2_3 = true;
+    map->addChild(brige_2_middle_2);
+    brige_2_right = BrigeRight::create();
+    brige_2_right->setPosition(2661,200);
+    brige_2_4 = true;
+    map->addChild(brige_2_right);
+    
+}
+void GameScene::gameOver(){
+        Director::getInstance()->replaceScene(TransitionCrossFade::create(0.5, MainScene::createScene()));
+}

@@ -12,6 +12,9 @@
 #include "Hero.h"
 #include "Bullet.h"
 #include "Bombman.h"
+#include "BrigeLeft.h"
+#include "BrigeMiddle.h"
+#include "BrigeRight.h"
 using namespace cocos2d;
 class GameScene : public Layer
 {
@@ -42,7 +45,38 @@ public:
     void checkHited();
     Sprite* map;
     void addPlatform();
+    Sprite *brige_1_left;
+    Sprite *brige_1_middle_1;
+    Sprite *brige_1_middle_2;
+    Sprite *brige_1_right;
+    
+    Sprite *brige_2_left;
+    Sprite *brige_2_middle_1;
+    Sprite *brige_2_middle_2;
+    Sprite *brige_2_right;
+    void addBrige();
+    void gameOver();
+    int life = 3;
+    
 };
+bool brige_1_1;
+bool brige_1_2;
+bool brige_1_3;
+bool brige_1_4;
+
+bool brige_2_1;
+bool brige_2_2;
+bool brige_2_3;
+bool brige_2_4;
+
+//bool GameScene::brige_1_1 = true;
+//bool GameScene::brige_1_2 = true;
+//bool GameScene::brige_1_3 = true;
+//bool GameScene::brige_1_4 = true;
+//bool GameScene::brige_2_1 = true;
+//bool GameScene::brige_2_2 = true;
+//bool GameScene::brige_2_3 = true;
+//bool GameScene::brige_2_4 = true;
 
 
 #endif

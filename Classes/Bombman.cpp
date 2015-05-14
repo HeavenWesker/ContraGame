@@ -33,5 +33,15 @@ void Bombman::moveLeft(float dt){
 void Bombman::die(){
     this->removeAllChildren();
     auto sprite = Sprite::create("bombman_idle.png");
-    sprite->setRotation(PI/2);
+    Vector<SpriteFrame*> allFrames;
+    for (int i = 0; i < 2; i++) {
+        char txt[100] = {};
+        sprintf(txt, "bombman/enemyDie%d.png", i+1);
+        SpriteFrame * spriteFrame = SpriteFrame::create(txt, Rect(0,0,35,48));
+        allFrames.pushBack(spriteFrame);
+    }
+    Animation* animation = Animation::createWithSpriteFrames(allFrames, 0.2);
+    movingAction = this->runAction(Animate::create(animation));
+//    removeFromParent();
+//    sprite->setRotation(PI/2);
 }

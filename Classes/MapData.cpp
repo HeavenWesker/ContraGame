@@ -9,10 +9,10 @@
 #include "MapData.h"
 float* MapData::getHeight(float x){
     float* attr = new float[3];
-    attr[0] = 40;
-    attr[1] = 40;
-    attr[2] = 40;
-    int xCol = (int) x/74;
+    attr[0] = -20;
+    attr[1] = -20;
+    attr[2] = -20;
+    int xCol = (int) x/73.75;
     CCLOG("xPosition = %f", x);
     CCLOG("xPositionCol = %d", xCol);
     if (xCol == 64) {
@@ -80,15 +80,64 @@ float* MapData::getHeight(float x){
         attr[1] = 40;
     }else if(xCol == 87 or xCol == 99){
         attr[0] = 40;
+    }else if(xCol == 24){//brige1
+        if (brige_1_1) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 25){
+        if (brige_1_2) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 26){
+        if (brige_1_3) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 27){
+        if (brige_1_4) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 33){//brige2
+        if (brige_2_1) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 34){
+        if (brige_2_2) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 35){
+        if (brige_2_3) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
+    }else if(xCol == 36){
+        if (brige_2_4) {
+            attr[0] = 200;
+        }else{
+            attr[0] = 40;
+        }
+//        attr[0] = 40;
     }else
         CCLOG("Warring:%d", xCol);
     return attr;
 //    return dataList[(int) x/74];
-}
-MapData::MapData(){
-    for (int i = 0; i<22; i++) {
-//        Vector<float*> data;
-//        dataList.pushBack(data);
-        float *data = new float[3];
-    }
 }

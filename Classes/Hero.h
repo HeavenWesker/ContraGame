@@ -38,6 +38,7 @@ public:
     float gravaty;
     float originY;
     float speedX;
+    void gravatyEffect(float dt);
 };
 
 

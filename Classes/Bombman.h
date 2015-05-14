@@ -19,6 +19,7 @@ public:
     void update(float dt);
     void moveLeft(float dt);
     Action *movingAction;
+    Action *dieAction;
     void die();
 };
 

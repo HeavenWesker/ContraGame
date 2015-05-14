@@ -12,7 +12,7 @@
 bool Hero::init(){
     Sprite::init();
     directionRight = true;
-    speedX = 1000;
+    speedX = 200;
     isDown = false;
     movingRight = false;
     movingLeft = false;
@@ -62,12 +62,16 @@ void Hero::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
             }
             break;
         case 134://jump
-            if (!isJumping) {
+            if (!isJumping && !isDown) {
                 jump();
 //                originY = this->getPositionY();
 //                auto originYs = MapData::getHeight(getPositionX());
 //                originY = originYs[0];
                 speedY = 6;
+                gravaty = -0.2;
+                isJumping = true;
+            }else if(isDown){
+                speedY = -2;
                 gravaty = -0.2;
                 isJumping = true;
             }
@@ -126,9 +130,15 @@ void Hero::moveRight(float dt){
 void Hero::update(float dt){
     if (movingRight) {
         moveRight(dt);
+        if (!isJumping) {
+            gravatyEffect(dt);
+        }
     }
     if (movingLeft) {
         moveLeft(dt);
+        if (!isJumping) {
+            gravatyEffect(dt);
+        }
     }
     if (isJumping) {
         setPositionY(getPositionY()+speedY);
@@ -182,4 +192,20 @@ void Hero::jump(){
     }
     Animation* animation = Animation::createWithSpriteFrames(allFrames, 0.2);
     movingAction = sp->runAction(RepeatForever::create(Animate::create(animation)));
+}
+void Hero::gravatyEffect(float dt){
+    auto originYs = MapData::getHeight(getPositionX());
+    for (int i = 0; i < 3; i++) {
+//        CCLOG("CurrentY:%f",getPositionY());
+//        CCLOG("originYs[%d]:%f",i,originYs[i]);
+        if (originYs[i] <= getPositionY()) {
+            originY = originYs[i];
+            break;
+        }
+    }
+    if (originY != getPositionY()) {
+    speedY+=gravaty;
+        setPositionY(getPositionY()+speedY);
+        isJumping = true;
+    }
 }
