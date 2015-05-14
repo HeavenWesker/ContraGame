@@ -75,7 +75,7 @@ void GameScene::update(float dt){
         }
     }
     count ++;
-    if (addBombmanCount % 100 == 0) {
+    if (addBombmanCount % 75 == 0) {
         addBombman();
     }
     addBombmanCount++;
@@ -184,23 +184,27 @@ void GameScene::checkHited(){
             auto bullet = bullets.at(j);
             auto bulletRect = Rect(bullet->getPositionX(), bullet->getPositionY(), 1, 1);
 //            if (std::abs(bombman->getPositionX()-bullet->getPositionX())<20 &&bullet->getPositionY()-bombman->getPositionY()<50) {
-            if (bombmanRect.intersectsRect(bulletRect)) {
-                bombmans.eraseObject(bombman);
-                bombman->removeFromParent();
-//                bombman->die();
+            if (bombmanRect.intersectsRect(bulletRect) and bombman->hittable) {
+//                bombmans.eraseObject(bombman);
+//                bombman->removeFromParent();
+////                bombman->die();
+//                bullets.eraseObject(bullet);
+//                bullet->removeFromParent();
+////                CCLOG("Hitted");
+//                i--;
+//                j--;
                 bullets.eraseObject(bullet);
                 bullet->removeFromParent();
-//                CCLOG("Hitted");
-                i--;
-                j--;
+                bombman->die();
                 break;
             }
         }
             auto heroRect = Rect(hero->getPositionX(), hero->getPositionY(),30, 40);
-            if(bombmanRect.intersectsRect(heroRect)){
+            if(bombmanRect.intersectsRect(heroRect) and bombman->hittable){
                 CCLOG("DIE");
-                bombmans.eraseObject(bombman);
-                bombman->removeFromParent();
+                bombman->die();
+//                bombmans.eraseObject(bombman);
+//                bombman->removeFromParent();
                 life--;
                 if (life==0) {
                     gameOver();

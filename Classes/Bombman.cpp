@@ -25,6 +25,15 @@ bool Bombman::init(){
     return true;
 }
 void Bombman::update(float dt){
+    if (dieTimeout==10) {
+        removeFromParent();
+        bombmans.eraseObject(this);
+        CCLOG("DIED");
+        return;
+    }else if(dieTimeout>-1){
+        CCLOG("WAIT %d", dieTimeout);
+        dieTimeout+=1;
+    }
     moveLeft(dt);
     gravatyEffect(dt);
     if (getPositionY()-originY<10 && getPositionY()-originY>-10 && speedY<0) {
@@ -39,17 +48,20 @@ void Bombman::moveLeft(float dt){
     setPositionX(getPositionX()-d);
 }
 void Bombman::die(){
+    hittable = false;
     this->removeAllChildren();
     auto sprite = Sprite::create("bombman_idle.png");
+    stopAction(movingAction);
     Vector<SpriteFrame*> allFrames;
     for (int i = 0; i < 2; i++) {
         char txt[100] = {};
         sprintf(txt, "bombman/enemyDie%d.png", i+1);
-        SpriteFrame * spriteFrame = SpriteFrame::create(txt, Rect(0,0,35,48));
+        SpriteFrame * spriteFrame = SpriteFrame::create(txt, Rect(0,0,35,26));
         allFrames.pushBack(spriteFrame);
     }
     Animation* animation = Animation::createWithSpriteFrames(allFrames, 0.2);
-    movingAction = this->runAction(Animate::create(animation));
+    dieAction = this->runAction(Animate::create(animation));
+    dieTimeout = 0;
 //    removeFromParent();
 //    sprite->setRotation(PI/2);
 }

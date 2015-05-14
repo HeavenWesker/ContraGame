@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "cocos2d.h"
+//#include "GameScene.h"
 using namespace cocos2d;
 class Bombman:public Sprite{
 public:
@@ -26,6 +27,9 @@ public:
     float speedY;
     float gravaty = -0.2;
     bool isJumping;
+    int dieTimeout = -1;
+    bool hittable = true;
 };
+extern Vector<Bombman*> bombmans;
 
 #endif /* defined(__ContraGame__Bombman__) */

@@ -38,7 +38,6 @@ public:
     void onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event);
     int count;
     bool outScreen(Node* node);
-    Vector<Bombman*> bombmans;
     void addBombman();
     void moveBombmans(float dt);
     int addBombmanCount;
@@ -68,6 +67,7 @@ bool brige_2_1;
 bool brige_2_2;
 bool brige_2_3;
 bool brige_2_4;
+Vector<Bombman*> bombmans;
 
 //bool GameScene::brige_1_1 = true;
 //bool GameScene::brige_1_2 = true;
