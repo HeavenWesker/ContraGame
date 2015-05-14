@@ -39,7 +39,6 @@ float* MapData::getHeight(float x){
     }else if(xCol == 47 or xCol == 48 or xCol == 66 or xCol == 79){
         attr[0] = 250;
         attr[1] = 115;
-        attr[2] = 40;
     }else if(xCol == 49 or xCol == 65 or xCol == 67){
         attr[0] = 250;
     }else if(
@@ -136,6 +135,8 @@ float* MapData::getHeight(float x){
             attr[0] = 40;
         }
 //        attr[0] = 40;
+    }else if(xCol > 99){
+        attr[0] = 40;
     }else
         CCLOG("Warring:%d", xCol);
     return attr;

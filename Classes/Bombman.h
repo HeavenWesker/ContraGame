@@ -21,6 +21,11 @@ public:
     Action *movingAction;
     Action *dieAction;
     void die();
+    void gravatyEffect(float dt);
+    float originY;
+    float speedY;
+    float gravaty = -0.2;
+    bool isJumping;
 };
 
 #endif /* defined(__ContraGame__Bombman__) */

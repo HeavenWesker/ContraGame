@@ -7,6 +7,7 @@
 //
 
 #include "Bombman.h"
+#include "MapData.h"
 #define PI 3.141592653
 bool Bombman::init(){
     Sprite::init();
@@ -25,6 +26,13 @@ bool Bombman::init(){
 }
 void Bombman::update(float dt){
     moveLeft(dt);
+    gravatyEffect(dt);
+    if (getPositionY()-originY<10 && getPositionY()-originY>-10 && speedY<0) {
+        setPositionY(originY);
+        isJumping = false;
+//        sp->stopAction(movingAction);
+//        idle();
+    }
 }
 void Bombman::moveLeft(float dt){
     float d = 100 * dt;
@@ -44,4 +52,20 @@ void Bombman::die(){
     movingAction = this->runAction(Animate::create(animation));
 //    removeFromParent();
 //    sprite->setRotation(PI/2);
+}
+void Bombman::gravatyEffect(float dt){
+    auto originYs = MapData::getHeight(getPositionX());
+    for (int i = 0; i < 3; i++) {
+//        CCLOG("CurrentY:%f",getPositionY());
+//        CCLOG("originYs[%d]:%f",i,originYs[i]);
+        if (originYs[i] <= getPositionY()) {
+            originY = originYs[i];
+            break;
+        }
+    }
+    if (originY != getPositionY()) {
+    speedY+=gravaty;
+        setPositionY(getPositionY()+speedY);
+        isJumping = true;
+    }
 }
