@@ -12,7 +12,7 @@
 bool Hero::init(){
     Sprite::init();
     directionRight = true;
-    speedX = 2000;
+    speedX = 200;
     isDown = false;
     movingRight = false;
     movingLeft = false;

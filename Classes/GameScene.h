@@ -57,13 +57,15 @@ public:
     Sprite *boos;
     void addBrige();
     void gameOver();
-    int life = 10;
-    int boosLife = 3;
+    int life = 3;
+    int boosLife = 30;
     Action *boosDieAction;
     void addBoos();
     void youWin();
     int boosDieTimeOut = -1;
     int winTimeOut = -1;
+    Vector<Sprite*> lifeSprites;
+//    Sprite *winSprite;
     
 };
 bool brige_1_1;

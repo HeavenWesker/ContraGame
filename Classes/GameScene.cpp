@@ -54,11 +54,20 @@ bool GameScene::init()
     hero = Hero::create();
     hero->setPosition(120, 200);
     map->addChild(hero);
+//    this->addChild(win);
     
 //    auto bullet = Bullet::create();
 //    bullet->setPosition(150, 200);
 //    map->addChild(bullet);
     addBombmanCount = 0;
+    for (int i =0; i < life; i++) {
+        auto lifeSprite = Sprite::create("life.png");
+        lifeSprite->setAnchorPoint(Vec2(0,0));
+        lifeSprite->setScale(0.5,0.5);
+        lifeSprite->setPosition(450-i*60, 450);
+        addChild(lifeSprite);
+        lifeSprites.pushBack(lifeSprite);
+    }
     
 //    this->schedule(schedule_selector(GameScene::update), 0.01);
     isFiring = false;
@@ -105,13 +114,15 @@ void GameScene::update(float dt){
         CCLOG("BOOSWAIT%d", boosDieTimeOut);
     }else if(boosDieTimeOut == 100){
         boos->stopAction(boosDieAction);
-        Sprite *win = Sprite::create("you_win.png");
-        win->setScale(0.70, 0.70);
-        win->setPosition(Vec2(7360,200));
-        map->addChild(win);
+    Sprite *winSprite = Sprite::create("you_win.png");
+    winSprite->setAnchorPoint(Vec2(0.5,0.5));
+    winSprite->setScale(0.70, 0.70);
+    winSprite->setPosition(Vec2(7340,200));
+        map->addChild(winSprite);
         if (winTimeOut == -1) {
             winTimeOut = 0;
         }
+        boosDieTimeOut += 1;
     }
     moveBullets(dt);
     moveBombmans(dt);
@@ -230,6 +241,7 @@ void GameScene::checkHited(){
             hero->setPosition(120-map->getPositionX(), 300);
             CCLOG("ssss%f:%f",hero->getPositionX(),hero->getPositionY());
             life--;
+            lifeSprites.at(life)->removeFromParent();
             if (life==0) {
                 gameOver();
             }
