@@ -42,8 +42,8 @@ bool GameScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-//    map = Sprite::create("bg.jpg");
-    map = Sprite::create("bg_2.jpg");
+    map = Sprite::create("bg.jpg");
+//    map = Sprite::create("bg_2.jpg");
     map->setAnchorPoint(Vec2(0,0));
     this->addChild(map);
     addBrige();
@@ -77,6 +77,10 @@ bool GameScene::init()
     return true;
 }
 void GameScene::update(float dt){
+    if (pause) {
+        CCLOG("PAUSE");
+        return;
+    }
     if (winTimeOut != -1) {
         CCLOG("WINTIMEOUT%d", winTimeOut);
         winTimeOut += 1;
@@ -143,6 +147,9 @@ void GameScene::onKeyPressedOwn(EventKeyboard::KeyCode code, Event* event){
             isFiring = true;
             count = 0;
             break;
+        case 6:
+            pause = pause? false : true;
+            break;
         default:
             break;
     }
@@ -151,6 +158,8 @@ void GameScene::onKeyReleasedOwn(EventKeyboard::KeyCode code, Event* event){
     switch (int(code)) {
         case 133://Fire
             isFiring = false;
+            break;
+        case 6:
             break;
         default:
             break;

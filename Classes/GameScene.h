@@ -66,6 +66,7 @@ public:
     int winTimeOut = -1;
     Vector<Sprite*> lifeSprites;
 //    Sprite *winSprite;
+    bool pause = false;
     
 };
 bool brige_1_1;
