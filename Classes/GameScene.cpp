@@ -47,6 +47,7 @@ bool GameScene::init()
     map->setAnchorPoint(Vec2(0,0));
     this->addChild(map);
     addBrige();
+    addBoos();
     //add platform
 //    addPlatform();
     //add hero
@@ -67,6 +68,13 @@ bool GameScene::init()
     return true;
 }
 void GameScene::update(float dt){
+    if (winTimeOut != -1) {
+        CCLOG("WINTIMEOUT%d", winTimeOut);
+        winTimeOut += 1;
+        if (winTimeOut == 100) {
+            gameOver();
+        }
+    }
 //    CCLOG("hero position:%f", hero->getPositionX());
 //    CCLOG("map position:%f", map->getPositionX());
     if (isFiring) {
@@ -91,6 +99,19 @@ void GameScene::update(float dt){
     }
     if (heroX+mapX>502) {
         hero->setPositionX(7589-10);
+    }
+    if (boosDieTimeOut != -1 and boosDieTimeOut != 100) {
+        boosDieTimeOut += 1;
+        CCLOG("BOOSWAIT%d", boosDieTimeOut);
+    }else if(boosDieTimeOut == 100){
+        boos->stopAction(boosDieAction);
+        Sprite *win = Sprite::create("you_win.png");
+        win->setScale(0.70, 0.70);
+        win->setPosition(Vec2(7360,200));
+        map->addChild(win);
+        if (winTimeOut == -1) {
+            winTimeOut = 0;
+        }
     }
     moveBullets(dt);
     moveBombmans(dt);
@@ -199,18 +220,36 @@ void GameScene::checkHited(){
                 break;
             }
         }
-            auto heroRect = Rect(hero->getPositionX(), hero->getPositionY(),30, 40);
-            if(bombmanRect.intersectsRect(heroRect) and bombman->hittable){
-                CCLOG("DIE");
-                bombman->die();
-//                bombmans.eraseObject(bombman);
-//                bombman->removeFromParent();
-                life--;
-                if (life==0) {
-                    gameOver();
-                }
-//                i--;
+        auto heroRect = Rect(hero->getPositionX(), hero->getPositionY(),30, 40);
+        if((bombmanRect.intersectsRect(heroRect) and bombman->hittable) or hero->getPositionY() <= -50){
+            CCLOG("DIE");
+            bombman->die();
+            //                bombmans.eraseObject(bombman);
+            //                bombman->removeFromParent();
+            //                hero->setPosition(120-map->getPositionX(), 500);
+            hero->setPosition(120-map->getPositionX(), 300);
+            CCLOG("ssss%f:%f",hero->getPositionX(),hero->getPositionY());
+            life--;
+            if (life==0) {
+                gameOver();
             }
+            //                i--;
+        }
+        for (int i = 0; i < bullets.size(); i++) {
+            auto *bullet = bullets.at(i);
+            auto boosRect = Rect(boos->getPositionX(), boos->getPositionY(), 257, 307);
+            auto bulletRect = Rect(bullet->getPositionX(),bullet->getPositionY(), 1, 1);
+            if (boosRect.intersectsRect(bulletRect)) {
+                bullets.eraseObject(bullet);
+                bullet->removeFromParent();
+                boosLife -= 1;
+                if (boosLife == 0) {
+                    youWin();
+                }
+                break;
+            }
+            
+        }
     }
 }
 void GameScene::addBrige(){
@@ -254,4 +293,22 @@ void GameScene::addBrige(){
 }
 void GameScene::gameOver(){
         Director::getInstance()->replaceScene(TransitionCrossFade::create(0.5, MainScene::createScene()));
+}
+void GameScene::addBoos(){
+    boos = Sprite::create("boos.png");
+    boos->setAnchorPoint(Vec2(0,0));
+    boos->setPosition(7335, 0);
+    map->addChild(boos);
+}
+void GameScene::youWin(){
+    Vector<SpriteFrame*> allFrames;
+    for (int i = 0; i < 2; i++) {
+        char txt[100] = {};
+        sprintf(txt, "boosDie%d.png", i+1);
+        SpriteFrame * spriteFrame = SpriteFrame::create(txt, Rect(0,0,246,140));
+        allFrames.pushBack(spriteFrame);
+    }
+    Animation* animation = Animation::createWithSpriteFrames(allFrames, 0.2);
+    boosDieAction = boos->runAction(RepeatForever::create(Animate::create(animation)));
+    boosDieTimeOut = 0;
 }

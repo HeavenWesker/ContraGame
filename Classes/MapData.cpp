@@ -9,12 +9,12 @@
 #include "MapData.h"
 float* MapData::getHeight(float x){
     float* attr = new float[3];
-    attr[0] = -20;
-    attr[1] = -20;
-    attr[2] = -20;
+    attr[0] = -50;
+    attr[1] = -50;
+    attr[2] = -50;
     int xCol = (int) x/73.75;
-    CCLOG("xPosition = %f", x);
-    CCLOG("xPositionCol = %d", xCol);
+//    CCLOG("xPosition = %f", x);
+//    CCLOG("xPositionCol = %d", xCol);
     if (xCol == 64) {
         attr[0] = 250;
         attr[1] = 200;

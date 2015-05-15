@@ -53,9 +53,17 @@ public:
     Sprite *brige_2_middle_1;
     Sprite *brige_2_middle_2;
     Sprite *brige_2_right;
+    
+    Sprite *boos;
     void addBrige();
     void gameOver();
-    int life = 3;
+    int life = 10;
+    int boosLife = 3;
+    Action *boosDieAction;
+    void addBoos();
+    void youWin();
+    int boosDieTimeOut = -1;
+    int winTimeOut = -1;
     
 };
 bool brige_1_1;

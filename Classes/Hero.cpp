@@ -12,7 +12,7 @@
 bool Hero::init(){
     Sprite::init();
     directionRight = true;
-    speedX = 200;
+    speedX = 2000;
     isDown = false;
     movingRight = false;
     movingLeft = false;
@@ -145,8 +145,8 @@ void Hero::update(float dt){
         speedY+=gravaty;
         auto originYs = MapData::getHeight(getPositionX());
         for (int i = 0; i < 3; i++) {
-            CCLOG("CurrentY:%f",getPositionY());
-            CCLOG("originYs[%d]:%f",i,originYs[i]);
+//            CCLOG("CurrentY:%f",getPositionY());
+//            CCLOG("originYs[%d]:%f",i,originYs[i]);
             if (originYs[i] <= getPositionY()) {
                 originY = originYs[i];
                 break;
@@ -159,6 +159,8 @@ void Hero::update(float dt){
             sp->stopAction(movingAction);
             idle();
         }
+    }else{
+        gravatyEffect(dt);
     }
 }
 void Hero::moveAnimation(){

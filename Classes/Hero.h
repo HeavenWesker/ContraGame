@@ -35,7 +35,7 @@ public:
     void jump();
     bool isJumping;
     float speedY;
-    float gravaty;
+    float gravaty = -0.2;
     float originY;
     float speedX;
     void gravatyEffect(float dt);
